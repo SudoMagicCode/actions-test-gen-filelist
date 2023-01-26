@@ -15,7 +15,7 @@ jobs:
     - name: Run a one-line script
       run: python ./.github/workflows/build_file_list.py
     - name: switching from HTTPS to SSH
-      run: git remote set-url origin ${{ secrets.ssh }}
+      run: git remote set-url origin ${{ secrets.GITHUB_TOKEN }}
     - name: check for changes
       run: git status
     - name: stage changed files
