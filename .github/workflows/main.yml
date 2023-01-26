@@ -16,6 +16,8 @@ jobs:
       run: python ./.github/workflows/build_file_list.py
     - name: switching from HTTPS to SSH
       run: git remote set-url origin ${{ secrets.GITHUB_TOKEN }}
+    -name: set username
+      run: git config --global user.name AUTOMATION
     - name: check for changes
       run: git status
     - name: stage changed files
