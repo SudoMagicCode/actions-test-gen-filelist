@@ -17,3 +17,4 @@ with open("manifest/test.txt", "w") as file:
     file.write("\n")
     for f in os.listdir("test-dir/"):
         file.write(f"{f}\n")
+
