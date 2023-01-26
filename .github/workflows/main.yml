@@ -10,21 +10,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - uses: jannekem/run-python-script-action@v1
-        with:
-          script: |
-            import os
+      steps:
+      - uses: actions/checkout@v1
+      - name: Run a one-line script
+        run: python ./.github/workflows/build_file_list.py
+      - name: switching from HTTPS to SSH
+        run: git remote set-url origin ${{ secrets.ssh }}
+      - name: check for changes
+        run: git status
+      - name: stage changed files
+        run: git add .
+      - name: commit changed files
+        run: git commit -m "Auto updating TODO.txt"
+      - name: fetch from master
+        run: git fetch origin main
+      - name: push code to master
+        run: git push origin HEAD:main
 
-            os.mkdir("manifest/")
-            with open("manifest/test.txt", "w+") as file:
-              file.write("Hello world")
-
-            print("Directory contents:")
-            for f in os.listdir():
-                print(f)
 
