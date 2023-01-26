@@ -22,3 +22,6 @@ jobs:
             print("Directory contents:")
             for f in os.listdir():
                 print(f)
+            os.mkdir("manifest/")
+            with open("manifest/test.txt", "w+") as file:
+              file.write("Hello world")
