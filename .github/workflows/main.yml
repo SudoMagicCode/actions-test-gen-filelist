@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Run a one-line script
+    - name: Run a python script
       run: python ./.github/workflows/build_file_list.py
-    - name: switching from HTTPS to SSH
-      run: git remote set-url origin ${{ secrets.GITHUB_TOKEN }}
     - name: set username
       run: git config --global user.name AUTOMATION
+    - name: set email
+      run: git config --global user.email "AUTOMATION@sudomagic.com"
     - name: check for changes
       run: git status
     - name: stage changed files
